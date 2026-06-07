@@ -1,8 +1,12 @@
 import mongoose from 'mongoose';
+import dns from 'dns';
 import { logger } from '../utils/logger';
 
 export const connectDB = async (): Promise<void> => {
   try {
+    // Override default DNS servers on Windows to resolve Atlas SRV querySrv issues
+    dns.setServers(['8.8.8.8', '8.8.4.4']);
+    
     const connUri = process.env.MONGODB_URI;
     if (!connUri) {
       throw new Error('MONGODB_URI is not defined in environment variables');

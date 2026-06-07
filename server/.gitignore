@@ -1,18 +1,21 @@
-# Environment variables
-.env
-
 # Dependencies
 node_modules/
-
-# Logs
-logs
-*.log
-npm-debug.log*
 
 # Build folders
 dist/
 build/
 
-# OS files
+# Environment variables (contains MongoDB URI, Cloudinary secrets, JWT keys)
+.env
+.env.local
+.env.production
+.env.development
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS Files
 .DS_Store
 Thumbs.db

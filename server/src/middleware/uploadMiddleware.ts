@@ -2,8 +2,6 @@ import multer from 'multer';
 import { v2 as cloudinary } from 'cloudinary';
 import { BadRequestError } from '../utils/apiError';
 import { logger } from '../utils/logger';
-import streamifier from 'streamifier'; // wait, did we install streamifier? Let's check package.json.
-// Ah, we did not install streamifier. But we can convert a buffer to a readable stream using simple built-in Node.js Readable stream!
 import { Readable } from 'stream';
 
 // Configure Cloudinary

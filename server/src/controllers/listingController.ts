@@ -104,15 +104,19 @@ export const createListing = async (req: AuthenticatedRequest, res: Response, ne
 export const getListings = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   try {
     const user = req.user;
-    const { schoolId, grade, category, mode, search, page = 1, limit = 20 } = req.query;
+    const { schoolId, grade, category, mode, search, sellerId, page = 1, limit = 20 } = req.query;
 
     const query: any = { isActive: true };
 
-    // Filter by school. If not specified, default to user's school
-    query.schoolId = schoolId ? schoolId : user.schoolId;
+    if (sellerId) {
+      query.sellerId = sellerId;
+    } else {
+      // Filter by school. If not specified, default to user's school
+      query.schoolId = schoolId ? schoolId : user.schoolId;
 
-    if (!query.schoolId) {
-      throw new BadRequestError('School ID must be provided either in query params or set on user profile');
+      if (!query.schoolId) {
+        throw new BadRequestError('School ID must be provided either in query params or set on user profile');
+      }
     }
 
     if (grade) {

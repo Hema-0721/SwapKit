@@ -9,13 +9,13 @@ export interface TokenPayload {
 
 export const generateAccessToken = (userId: string): string => {
   return jwt.sign({ userId }, getAccessSecret(), {
-    expiresIn: process.env.JWT_ACCESS_EXPIRY || '15m',
+    expiresIn: (process.env.JWT_ACCESS_EXPIRY || '15m') as any,
   });
 };
 
 export const generateRefreshToken = (userId: string): string => {
   return jwt.sign({ userId }, getRefreshSecret(), {
-    expiresIn: process.env.JWT_REFRESH_EXPIRY || '30d',
+    expiresIn: (process.env.JWT_REFRESH_EXPIRY || '30d') as any,
   });
 };
 

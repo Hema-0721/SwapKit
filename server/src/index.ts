@@ -68,7 +68,9 @@ const startServer = async () => {
   });
 };
 
-startServer().catch((err) => {
-  logger.error(`Fatal server start failure: ${err.message}`);
-  process.exit(1);
-});
+if (require.main === module) {
+  startServer().catch((err) => {
+    logger.error(`Fatal server start failure: ${err.message}`);
+    process.exit(1);
+  });
+}
